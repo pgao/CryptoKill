@@ -1,3 +1,4 @@
+Leiningen.gitignore
 /target
 /pom.xml
 /.lein-*
