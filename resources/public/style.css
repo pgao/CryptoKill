@@ -1,0 +1,169 @@
+body {
+    background-color: #171618;
+    font-family: "Open Sans", sans-serif;
+}
+
+#background {
+    position: fixed;
+
+    top: 0px;
+    left: 0px;
+    width: 57.5%;
+    height: 100%;
+
+    background-color: #f6f6f7; 
+
+    z-index: -1;
+
+    transition: width 2s;
+    -webkit-transition: width 2s;
+}
+
+.titleContainer {
+	text-align: center;
+
+	margin-top: 50px;
+	margin-bottom: 100px;
+
+	font-size: 100px;
+	/*font-family: 'Ropa Sans', sans-serif;*/
+	font-family: "Stardos Stencil", cursive;
+
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+
+    transition: margin-bottom 2s;
+    -webkit-transition: margin-bottom 2s;
+}
+
+.title-left {
+	color: #171618;
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.title-right {
+	color:  #f6f6f7;
+	/*font-family: "Stardos Stencil", cursive;*/
+}
+
+.optionContainer {
+	margin: auto auto;
+	margin-bottom: 50px;
+
+	height: 60px;
+	width: 500px;
+}
+
+.button-left, .button-right {
+	font-family: "EB Garamond", serif;
+	text-align: center;
+
+	height: 50px;
+	width: 100px;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 50px;
+
+	font-size: 30px;
+}
+
+.button-left {
+	padding-left: 5px;
+	padding-right: 5px;
+
+	background-color: #272628;
+	color: #f6f6f6;
+
+	box-shadow: 5px 5px 6px -6px black;
+
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#option-left {
+	float: left;
+	width: 200px;
+
+	margin-left: 50px;
+	margin-right: 120px;
+}
+
+.button-right {
+	background-color: #272628;
+	color: #f6f6f6;
+
+	box-shadow: 5px 5px 6px -6px black;
+
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#option-right {
+	float: left;
+	width: 70px;
+}
+
+.leftFormContainer {
+	visibility: hidden;
+	margin: auto auto;
+
+	width: 800px;
+	height: 200px;
+	margin-bottom: 50px;
+
+	overflow: hidden;
+}
+
+.encryptionForm {
+	float: left;
+	width: 400px;
+	height: 900px;
+
+	text-align: center;
+
+	font-size: 20px;
+}
+
+.decryptionForm {
+	float: left;
+	width: 400px;
+	height: 800px;
+
+	text-align: center;
+
+	font-size: 20px;
+}
+
+.inputField {
+	width: 300px;
+	height: 30px;
+	padding: 5px;
+}
+
+#encryptButton {
+	float: left;
+
+	margin-right: 100px;
+}
+
+#decryptButton {
+	float:left;
+
+	margin-right: 10px;
+}
+
+.leftButtonContainer {
+	margin: auto auto;
+	height: 100px;
+	width: 330px;
+	visibility: hidden;
+}

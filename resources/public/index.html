@@ -1,0 +1,55 @@
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>CRYPTOKILL</title>
+		<link href="style.css" rel="stylesheet" />
+		<link href='http://fonts.googleapis.com/css?family=Ropa+Sans|Kelly+Slab|Montserrat+Alternates|Rationale|Open+Sans|Oxygen|Stardos+Stencil|Iceberg|EB+Garamond' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		<div id="background"></div>
+		<div class="titleContainer"><span class="title-left">crypto </span><span class="title-right">kill</span></div>
+
+		<div class="optionContainer">
+			<div class="button-left" id="option-left">Encrypt/Decrypt</div>
+			<div class="button-right" id="option-right">Break</div>
+		</div>
+
+		<div class="leftFormContainer">
+			<form class="encryptionForm">
+		        <label>Unencrypted text:</label>
+		        <br>
+		        <input type="text" class="inputField" id="unencrypted" name="unencrypted" />
+		        <br>
+
+		        <br>
+		        <br>
+
+		        <label>Encryption key:</label>
+		        <br>
+		        <input type="text" class="inputField" id="key" name="key" />
+		    </form>
+
+		    <form class="decryptionForm">
+		        <label>Encrypted text:</label>
+		        <br>
+		        <input type="text" class="inputField" id="encrypted" name="encrypted" />
+		        <br>
+		    </form>
+
+		</div>
+		
+	    <div class="leftButtonContainer">
+			<div class="button-left" id="encryptButton">Encrypt</div>
+			<div class="button-left" id="decryptButton">Decrypt</div>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+        <script src="script.js"></script>
+	</body>
+
+</html>

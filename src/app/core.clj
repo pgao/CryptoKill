@@ -1,20 +1,19 @@
 (ns app.core
-  (:use ring.adapter.jetty)
-  (:use compojure.core)
-  (:require [compojure.route :as route])
+  (:use compojure.core
+        ring.adapter.jetty)
+  (:require [compojure.handler :as handler]
+            [compojure.route :as route]
+            [ring.util.response :as response]
+            [clojure.data.json :as json])
   (:load "crypto"))
 
-(defroutes app
-  (GET "/" [] "OH HELLO THERE")
-  (route/not-found "<h1>Page not found</h1>"))
+(defroutes app-routes
+  (GET "/" [] (response/file-response "index.html" {:root "resources/public"}))
+  (GET "/encrypt" {params :params} (json/write-str (encrypt (:text params) (:keyText params))))
+  (GET "/encrypt-random" {params :params} (json/write-str (encrypt-random (:text params))))
+  (GET "/decrypt" {params :params} (json/write-str (decrypt (:text params) (:keyText params))))
+  (route/resources "/")
+  (route/not-found "Page not found"))
 
-(defn -main
-  [& args]
-  (defonce server (run-jetty app {:port 8000 :join? false}))
-  (def secretkey "secret")
-  (println "key:" secretkey)
-  (def encrypted (encrypt "MESSAGE" secretkey))
-  (println "encrypted:" encrypted)
-  (def decrypted (decrypt encrypted secretkey))
-  (println "decrypted:" decrypted)
-  (println "HELLO WORLD"))
+(defn -main [& args]
+  (run-jetty (handler/site app-routes) {:port 8000}))
