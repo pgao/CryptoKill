@@ -23,7 +23,8 @@
     (.init keygen 128 sr)
     (def x 
       (.. keygen generateKey getEncoded))
-    ; (println x)
+    (println "passphrase" passphrase)
+    (println "GETKEY RESULT" (String. x))
     x))
 
 (defn get-cipher [mode key-text]
@@ -47,23 +48,41 @@
 (defn encrypt [text key-text]
   (let [bytes (bytes text)
         cipher (get-cipher Cipher/ENCRYPT_MODE key-text)]
+    
     (println "ENCRYPT" text key-text)
-    (def result {:encrypted (URLEncoder/encode (base64 (.doFinal cipher bytes)))})
-    (println "ENCRYPT-RESULT" result)
+    (println "decoded key-text" (URLDecoder/decode key-text))
+
+    (def encryptedBytes (.doFinal cipher bytes))
+    (def base64d (base64 encryptedBytes))
+
+    (println "base64d" base64d)
+
+    (def result {:encrypted base64d, :keyText key-text})
+
+    (println "ENCRYPT-RESULT" result "\n")
     result))
 
 (defn encrypt-random [text]
   (let [bytes (bytes text)
         key-text (get-random-base64 16)
         cipher (get-cipher Cipher/ENCRYPT_MODE key-text)]
+    
     (println "ENCRYPT-RANDOM" text)
-    (def result {:encrypted (URLEncoder/encode (base64 (.doFinal cipher bytes))), :keyText (URLEncoder/encode key-text)})
-    (println "ENCRYPT-RANDOM-RESULT" result)
+    
+    (def result {:encrypted (base64 (.doFinal cipher bytes)), :keyText key-text})
+    
+    (println "ENCRYPT-RANDOM-RESULT" result "\n")
     result))
 
 (defn decrypt [text key-text]
-  (let [cipher (get-cipher Cipher/DECRYPT_MODE (URLDecoder/decode key-text))]
+  (let [bytes (bytes text)
+        cipher (get-cipher Cipher/DECRYPT_MODE (URLDecoder/decode key-text))]
+
     (println "DECRYPT" text key-text)
-    (def result {:decrypted (String. (.doFinal cipher (debase64 (URLDecoder/decode text))))})
-    (println "DECRYPT-RESULT" result)
+    (println "decoded key-text" (URLDecoder/decode key-text))
+    (println "debase64d" (debase64 (URLDecoder/decode text)))
+
+    (def result {:decrypted (String. (.doFinal cipher (debase64 text))), :keyText key-text})
+    
+    (println "DECRYPT-RESULT" result "\n")
     result))

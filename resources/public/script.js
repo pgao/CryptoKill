@@ -40,18 +40,20 @@ $(function() {
 
         getEncrypted: function() {
             console.log('getEncrypted');
-            var str = jQuery.param(
-                { 
-                    'text': $('#unencrypted').val(),
-                    'keyText': $('key').val()
-                }
-            );
+            var params = {
+                'text': $('#unencrypted').val()
+            };
+            if ($('#key').val() != '') {
+                params['keyText'] = $('#key').val();
+            }
             $.ajax({
-                url: '/encrypt-random?' + str,
+                url: '/encrypt',
                 contentType: 'application/json; charset=utf-8',
+                data: params,
                 dataType: 'json',
                 timeout: 5000,
                 success: function(data) {
+                    $('#unencrypted').val('');
                     $('#encrypted').val(data.encrypted);
                     $('#key').val(data.keyText);
                 },
@@ -63,19 +65,20 @@ $(function() {
 
         getDecrypted: function() {
             console.log('getDecrypted');
-            var str = jQuery.param(
-                { 
-                    'text': $('#encrypted').val(),
-                    'keyText': $('#key').val(),
-                }
-            );
+            var params = { 
+                'text': $('#encrypted').val(),
+                'keyText': $('#key').val()
+            };
             $.ajax({
-                url: '/decrypt?' + str,
+                url: '/decrypt',
                 contentType: 'application/json; charset=utf-8',
+                data: params,
                 dataType: 'json',
                 timeout: 5000,
                 success: function(data) {
                     $('#unencrypted').val(data.decrypted);
+                    $('#key').val(data.keyText);
+                    $('#encrypted').val('');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert('error ' + textStatus + " " + errorThrown);
