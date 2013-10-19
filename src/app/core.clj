@@ -19,4 +19,4 @@
   (route/not-found "Page not found"))
 
 (defn -main [& args]
-  (run-jetty (handler/site app-routes) {:port 8000}))
+  (run-jetty (handler/site app-routes) {:port 5000}))

@@ -1,1 +1,1 @@
-web: web: lein run -m app.core
+web: lein run -m app.core
